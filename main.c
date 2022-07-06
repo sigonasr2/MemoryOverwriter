@@ -63,14 +63,14 @@ int main(int argc,char**argv) {
         lseek(fd_proc_mem,addr,SEEK_SET);
         read(fd_proc_mem,buf,sizeof(unsigned int));
         while (1) {
-            sprintf(buf,"%d",(int)val++);
+            sprintf(buf,"%d",(int)val);
             lseek(fd_proc_mem,addr,SEEK_SET);
             if (write(fd_proc_mem,buf,sizeof(unsigned int))==-1) {
                 printf("Error while writing\n");
                 exit(1);
             }
-            printf("\nWrite %d",(int)val-1);
-            sleep(2);
+            printf("\nWrite %d",(int)val);
+            sleep(((double)interval/1000));
         }
 
         free(buf);
